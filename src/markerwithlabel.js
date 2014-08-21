@@ -579,3 +579,44 @@ MarkerWithLabel.prototype.setMap = function (theMap) {
   // ... then deal with the label:
   this.label.setMap(theMap);
 };
+
+MarkerWithLabel.prototype.fixAnchor = function (image_width, image_height, rotation) {
+  var anchorX = 0;
+  var anchorY = 0;
+
+  if(rotation >= 0 && rotation <= 22){
+    anchorX = image_width * (1 + rotation/22);
+    anchorY = image_height * -1;
+  }
+  else if(rotation > 22 && rotation <= 45){
+    anchorX = image_width * 1.5;
+    anchorY = image_height * -1;
+  }
+  else if(rotation > 45 && rotation <= 90){
+    anchorX = image_width * 1.5;
+    anchorY = (image_height/2) * -1;
+  }
+  else if(rotation > 90 && rotation <= 135){
+    anchorX = image_width * 1.5;
+    anchorY = 0;
+  }
+  else if(rotation > 135 && rotation <= 225){
+    anchorX = image_width * (1 + (1 - (rotation-1)/180));
+    anchorY = 0;
+  }
+  else if(rotation > 225 && rotation <= 270){
+    anchorX = image_width * (1 + (1 - (rotation-1)/180));
+    anchorY = image_height/2 * -1;
+  }
+  else if(rotation > 270 && rotation <= 315){
+    anchorX = image_width/2 * ((rotation-1)/315);
+    anchorY = image_height * -1;
+  }
+  else if(rotation > 315){
+    anchorX = image_width;
+    anchorY = image_height * -1;
+  }
+
+  this.labelAnchor = new google.maps.Point(anchorX, anchorY);
+  this.label.setAnchor();
+};
