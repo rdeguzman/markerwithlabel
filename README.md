@@ -1,9 +1,21 @@
-markerwithlabel
+MarkerWithLabel
 ===============
 
 MarkerWithLabel is a git clone of a google maps utilitiy library hosted in googlecode.com http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.9/
 
-# MarkerWithLabel for V3
+# Changes
+
+The arrow marker symbol defaults to a (0,0) anchor which is the top left corner of the label.  In order to center the arrow marker symbol on top of the symbol, we need to adjust the anchor point.
+
+	marker.fixAnchor(20, 20, obj.rotation);
+
+Before ![Smaller icon](images/svg_before.png)
+
+After ![Smaller icon](images/svg_after.png)
+
+# Reference
+
+## MarkerWithLabel for V3
 
 MarkerWithLabel extends the Google Maps JavaScript API V3 google.maps.Marker class.
 
@@ -13,7 +25,7 @@ If you drag a marker by its label, you can cancel the drag and return the marker
 
 For a description and examples of how to use this library, check out the how-to.
 
-## class MarkerWithLabel
+### class MarkerWithLabel
 
 Constructor
 
@@ -22,7 +34,7 @@ Constructor
 | MarkerWithLabel(opt_options?:MarkerWithLabelOptions) | Creates a MarkerWithLabel with the options specified in MarkerWithLabelOptions. 
 
 	
-## class MarkerWithLabelOptions
+### class MarkerWithLabelOptions
 
 This class represents the optional parameter passed to the MarkerWithLabel constructor. The properties available are the same as for google.maps.Marker with the addition of the properties listed below. To change any of these additional properties after the labeled marker has been created, call google.maps.Marker.set(propertyName, propertyValue).
 
